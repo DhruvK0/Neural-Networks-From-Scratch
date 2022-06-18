@@ -3,9 +3,10 @@ A collection of neural networks created from scratch for a deeper understanding 
 
 
 ## Contents
-## ANN From Scratch
-### - Optimizers
-####  - SGD
-####  - Adagrad
-####  - RMSProp
-####  - Adam
+1. Basic Artificial Neural Network
+
+
+## In the Works
+- Convolutional Neural Network
+- Recurrent Neural Network
+- Long Short-Term Neural Network
