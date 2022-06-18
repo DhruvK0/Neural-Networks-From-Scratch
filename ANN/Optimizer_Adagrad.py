@@ -11,7 +11,7 @@ class Optimizer_Adagrad:
 
     #call once before parameter updates
     def pre_update_params(self):
-        #if we use learning rate decay
+        #if we use learning rate decay over time
         if self.decay:
             self.current_learning_rate = self.learning_rate * (1 / (1 + self.decay * self.iterations))
 
