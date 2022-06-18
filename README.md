@@ -3,7 +3,8 @@ A collection of neural networks created from scratch for a deeper understanding 
 
 
 ## Contents
-1. Basic Artificial Neural Network
+1. ![Basic Artificial Neural Network](https://github.com/DhruvK0/Neural-Networks-From-Scratch/tree/master/ANN)
+
 
 
 ## In the Works
