@@ -27,7 +27,7 @@ class Optimizer_Adagrad:
         layer.weight_cache += layer.dweights**2
         layer.bias_cache += layer.dbiases**2
         
-        #vanilla SGD with square rooted cache
+        #vanilla SGD with square rooted cache and epsilon
         layer.weights += -self.current_learning_rate * layer.dweights / (np.sqrt(layer.weight_cache) + self.epsilon)
         layer.biases += -self.current_learning_rate * layer.dbiases / (np.sqrt(layer.bias_cache) + self.epsilon)
     

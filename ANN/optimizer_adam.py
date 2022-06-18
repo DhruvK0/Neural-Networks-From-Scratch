@@ -46,7 +46,7 @@ class Optimizer_Adam():
         bias_cache_corrected = layer.bias_cache / (1 - self.beta_2 ** (self.iterations + 1))
 
 
-        #vanilla SGD with parameter update + normalization
+        #vanilla SGD with parameter update + normalization using corrected cache
         layer.weights += -self.current_learning_rate * weight_momentums_corrected / (np.sqrt(weight_cache_corrected) + self.epsilon)
         layer.biases += -self.current_learning_rate * bias_momentums_corrected / (np.sqrt(bias_cache_corrected) + self.epsilon)
     
