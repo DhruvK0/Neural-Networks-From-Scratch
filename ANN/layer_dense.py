@@ -5,8 +5,14 @@ class Layer:
         self.weights = 0.01 * np.random.randn(inputs, neurons)
         self.biases = np.zeroes((1, neurons))
 
-    def forward(self, input):
-        pass
+    def forward(self, inputs):
+        self.inputs = inputs
 
-    def backward(self, output_gradient, learning_rate):
-        pass
+    def backward(self, dvalues):
+        #Gradient calculation on the parameters
+        self.dweights = np.dot(self.inputs.T, dvalues)
+        self.dbiases = np.sum(dvalues, axis=0, keepdims=True)
+
+        #Gradient Calculation on values
+        self.dinputs  = np.dot(dvalues, self.weights.T)
+        
