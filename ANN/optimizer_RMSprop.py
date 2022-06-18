@@ -26,7 +26,7 @@ class Optimizer_RMSProp:
 
         #update caches for weights and biases
         layer.weight_cache = self.rho * layer.weight_cache + (1 - self.rho) * layer.dweights**2
-        layer.bias_cache = self.rho * layer.weight_cache + (1 - self.rho) * layer.dbiases**2
+        layer.bias_cache = self.rho * layer.bias_cache + (1 - self.rho) * layer.dbiases**2
         
         #vanilla SGD with square rooted cache
         layer.weights += -self.current_learning_rate * layer.dweights / (np.sqrt(layer.weight_cache) + self.epsilon)
