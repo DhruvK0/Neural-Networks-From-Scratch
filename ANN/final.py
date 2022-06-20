@@ -17,13 +17,15 @@ from optimizer_Adam import Optimizer_Adam
 #import layer
 from layer_dense import Layer
 
+#import regularizer
+from loss import Loss
 
 #Create Spiral Data
 X, y = spiral_data(samples=100, classes=3)
 
 
 #create dense layer
-dense1 = Layer(2, 64)
+dense1 = Layer(2, 64, weight_regularizer_l2=5e-4, bias_regularizer_l2=5e-4)
 #create ReLU activation function
 activation1 = activation_ReLU()
 #create second dense layer with 64 inputs and 3 outputs
@@ -40,7 +42,10 @@ for epoch in range(1000):
     dense1.forward(X)
     activation1.forward(dense1.output)
     dense2.forward(activation1.output)
-    loss = loss_activation.forward(dense2.output, y)
+    data_loss = loss_activation.forward(dense2.output, y)
+    #add regularization
+    regularized_loss = loss_activation.regularization_loss(dense1) + loss_activation.regularization_loss(dense2)
+    loss = data_loss + regularized_loss
     
     #calculate accuracy of weights and biases
     acc_func = Accuracy()
@@ -50,7 +55,9 @@ for epoch in range(1000):
     if not epoch % 100:
         print(f'epoch: {epoch}, ' +
             f'acc: {accuracy:.3f}, ' +
-            f'loss: {loss:.3f}, ' +
+            f'loss: {loss:.3f} (' +
+            f'data_loss: {data_loss:.3f}, ' +
+            f'reg_loss: {regularized_loss:.3f}), ' +
             f'lr: {optimizer.current_learning_rate}')
         
     #backward pass of neural net
