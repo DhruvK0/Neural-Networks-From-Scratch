@@ -7,3 +7,5 @@ class activation_Sigmoid():
         self.inputs = inputs
         self.outputs = 1 / (1 + np.exp(-inputs))
     
+    def backward(self, dvalues):
+        self.dinputs = dvalues * (1 - self.outputs) * self.outputs
