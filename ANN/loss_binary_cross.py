@@ -1,6 +1,7 @@
 import numpy as np
+from loss import Loss
 
-class Loss_BinaryCrossEntropy():
+class Loss_BinaryCrossEntropy(Loss):
     #forward pass
     def forward(self, y_pred, y_true):
         #preclip values from 1e-7 to 1 - 1e-7
