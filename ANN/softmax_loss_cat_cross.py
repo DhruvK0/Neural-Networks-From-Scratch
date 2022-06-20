@@ -1,10 +1,11 @@
 import numpy as np
 from activation_softmax import activation_Softmax
 from cat_cross_entropy import Categorical_Cross_Entropy
+from loss import Loss
 
 # Softmax classifier - combined Softmax activation
 # and cross-entropy loss for faster backward step
-class Activation_Softmax_CategoricalCrossEntropy():
+class Activation_Softmax_CategoricalCrossEntropy(Loss):
     #construct objects for loss and activation functions
     def __init__(self):
         self.activation = activation_Softmax()
