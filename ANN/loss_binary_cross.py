@@ -12,3 +12,16 @@ class Loss_BinaryCrossEntropy():
 
         return sample_losses
 
+    #backward pass
+    def backward(self, dvalues, y_true):
+        samples = len(dvalues)
+        outputs = len(dvalues[0])
+
+        #clip data from both sides
+        clipped_dvalues = np.clip(dvalues, 1e-7, 1 - 1e-7)
+
+        #calculate gradient
+        self.dinputs = -(y_true / clipped_dvalues - (1 - y_true) / (1 - clipped_dvalues)) / outputs
+
+        #normalize gradient
+        self.dinputs = self.dinputs / samples
