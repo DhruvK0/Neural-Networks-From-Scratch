@@ -6,7 +6,7 @@ from cat_cross_entropy import Categorical_Cross_Entropy
 # and cross-entropy loss for faster backward step
 class Activation_Softmax_CategoricalCrossEntropy():
     #construct objects for loss and activation functions
-    def __init_(self):
+    def __init__(self):
         self.activation = activation_Softmax()
         self.loss = Categorical_Cross_Entropy()
 
