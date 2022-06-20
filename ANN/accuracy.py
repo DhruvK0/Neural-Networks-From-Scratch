@@ -10,3 +10,11 @@ class Accuracy():
             self.y_true = np.argmax(self.y_true, axis=1)
         
         return np.mean(self.predictions==self.y_true)
+
+    def calculate_binary(self, output, y_true):
+        self.y_true = y_true
+        self.predictions = (output > 0.5) * 1
+        if len(self.y_true.shape) == 2:
+            self.y_true = np.argmax(self.y_true, axis=1)
+        
+        return np.mean(self.predictions==self.y_true)
