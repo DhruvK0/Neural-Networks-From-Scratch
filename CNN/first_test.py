@@ -25,3 +25,7 @@ outputs = tf.nn.conv2d(images, filters, strides=1, padding="SAME")
 plt.imshow(outputs[0, :, :, 1], cmap="gray")
 plt.show()
 
+
+#create convoluted neural net variable
+
+conv = keras.layers.Conv2D(filters=32, kernel_size=3, strides=1, padding="same", activation="relu")
