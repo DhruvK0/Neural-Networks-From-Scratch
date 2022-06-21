@@ -17,6 +17,9 @@ class Model:
     
     # Train the model
     def train(self, X, y, *, epochs=1, print_every=1):
+
+        self.accuracy.init(y)
+        
         # Main training loop
         for epoch in range(1, epochs+1):
             # Temporary
@@ -30,7 +33,25 @@ class Model:
             predictions = self.output_layer_activation.predictions(output)
 
             accuracy = self.accuracy.calculate(predictions, y)
-    
+
+            # Perform backward pass
+            self.backward(output, y)
+
+            # Optimize (update parameters)
+            self.optimizer.pre_update_params()
+            for layer in self.trainable_layers:
+                self.optimizer.update_params(layer)
+            self.optimizer.post_update_params()
+
+            # Print a summary
+            if not epoch % print_every:
+                print(f'epoch: {epoch}, ' +
+                    f'acc: {accuracy:.3f}, ' +
+                    f'loss: {loss:.3f} (' +
+                    f'data_loss: {data_loss:.3f}, ' +
+                    f'reg_loss: {regularization_loss:.3f}), ' +
+                    f'lr: {self.optimizer.current_learning_rate}')
+
     # Finalize the model
     def finalize(self):
         # Create and set the input layer
@@ -78,3 +99,10 @@ class Model:
             layer.forward(layer.prev.output)
         
         return layer.output
+
+    
+    def backward(self, output, y):
+        self.loss.backward(output, y)
+
+        for layer in reversed(self.layers):
+            layer.backward(layer.next.dinputs)
