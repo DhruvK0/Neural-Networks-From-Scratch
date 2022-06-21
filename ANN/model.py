@@ -19,7 +19,9 @@ class Model:
         # Main training loop
         for epoch in range(1, epochs+1):
             # Temporary
-            pass
+            output = self.forward(X)
+            print(output)
+            exit()
     
     # Finalize the model
     def finalize(self):
