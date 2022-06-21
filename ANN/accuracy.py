@@ -3,18 +3,11 @@ import numpy as np
 class Accuracy():
     # Calculate accuracy from output of activation and targets
     # calculate values along first axis
-    def calculate(self, output, y_true):
-        self.y_true = y_true
-        self.predictions = np.argmax(output, axis=1)
-        if len(self.y_true.shape) == 2:
-            self.y_true = np.argmax(self.y_true, axis=1)
-        
-        return np.mean(self.predictions==self.y_true)
+    def calculate(self, predictions, y):
+        #get comparison results
+        comparisons = self.compare(predictions, y)
 
-    def calculate_binary(self, output, y_true):
-        self.y_true = y_true
-        self.predictions = (output > 0.5) * 1
-        if len(self.y_true.shape) == 2:
-            self.y_true = np.argmax(self.y_true, axis=1)
-        
-        return np.mean(self.predictions==self.y_true)
+        #calculate accuracy
+        accuracy = np.mea(comparisons)
+
+        return accuracy
