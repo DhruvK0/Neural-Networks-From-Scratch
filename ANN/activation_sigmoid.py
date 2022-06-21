@@ -9,3 +9,7 @@ class activation_Sigmoid():
     
     def backward(self, dvalues):
         self.dinputs = dvalues * (1 - self.output) * self.output
+
+    # Calculate predictions for outputs
+    def predictions(self, outputs):
+        return (outputs > 0.5) * 1
