@@ -12,3 +12,7 @@ class activation_ReLU:
         
         # Zero gradient where input values were negative
         self.dinputs[self.inputs <= 0] = 0
+    
+    # Calculate predictions for outputs
+    def predictions(self, outputs):
+        return outputs
