@@ -4,7 +4,7 @@ import numpy as np
 import pandas as pd
 from sklearn.datasets import load_sample_image
 import matplotlib.pyplot as plt
-
+import tensorflow_datasets as tsdf
 
 #load sample images
 china = load_sample_image('china.jpg') / 255
